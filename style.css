@@ -1,32 +1,55 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
+* {
     padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
-.gameboard{
-    height: 640px;
+
+body{
+    height: 100vh;/*takes up the entire available space*/
+    display: flex;
+    background: palevioletred;
+}
+
+.gameboard {
     width: 640px;
+    height: 640px;
     margin: auto;
-    display: flexbox;
+    display: flex;
     flex-wrap: wrap;
+    perspective: 1000px;
 }
-.gamecard{
+
+.gamecard {
     width: calc(25% - 10px);
-    height: calc(33.33 - 10px);
+    height: calc(33.33% - 10px);
     margin: 5px;
     position: relative;
+    background: yellow;
+    box-shadow: 1px 1px 1px black;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform .5s;
 }
-body{
-    height: 100vh;
-    display: flex;
-    background: purple;
+
+.gamecard:active {
+    transform: scale(.95);
+    transition: transform .2s;
 }
-.frontCard
-.backCard {
+
+.gamecard.flip {
+    transform: rotateY(180deg);
+}
+
+.frontface,
+.backface {
     width: 100%;
     height: 100%;
-    padding: 23px;
+    padding: 15px;
     position: absolute;
     border-radius: 5px;
-    background: red;
+    backface-visibility: hidden;
+}
+
+.frontface {
+    transform: rotateY(180deg);
 }
