@@ -8,20 +8,21 @@ function flipCard() {
     if (lockBoard) return;
     if (this === firstCard) return; //prevents the clicking(flipping) of the first card twice
 
-    this.classList.add('flip');//upon success of the first two checks, flips the card 
+    this.classList.add('flip');//upon success of the first two checks, flips the card
 
-if (!hasFlippedCard) {
-    hasFlippedCard = true;
-    firstCard = this;
-    return;
-} //carried out to determine the first card by checking if in the current pairing attempt, this is the first flip
-secondCard = this;//determines the second card by exiting the first card's criteria if statement
-checkForMatch();//called to determine the 
+    if (!hasFlippedCard) {
+        hasFlippedCard = true;
+        firstCard = this;
+        return;
+    } //carried out to determine the first card by checking if in the current pairing attempt, this is the first flip
+
+  secondCard = this;//determines the second card by exiting the first card's criteria if statement
+  checkForMatch();//called to determine the Match of the cards
+
 }
 
 function checkForMatch() {
     let isMatch = firstCard.dataset.foto === secondCard.dataset.foto;
-    //console.log(firstCard.classList, secondCard.classList);
     isMatch ? disableCards() : unFlipCards();
 } //function used to compare two cards and find the matches using the unique data attached to each gamecard div class
 
@@ -54,5 +55,6 @@ function resetBoard() {
     });
 })();//carries out the shuffling of the cards, that every game may be different from the previous board
 
+
 cards.forEach(card => {card.addEventListener('click', flipCard);
-});
+});//Makes user able to click the cards
